@@ -1,0 +1,5 @@
+{
+  "name": "Indigene Registration & Verification System",
+  "description": "A comprehensive system for indigenship registration, admin approval, and public certificate verification.",
+  "requestFramePermissions": ["camera"]
+}

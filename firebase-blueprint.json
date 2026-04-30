@@ -1,0 +1,53 @@
+{
+  "entities": {
+    "Application": {
+      "title": "Application",
+      "description": "An indigenship application record",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string", "description": "Registration ID (IND-YYYY-XXXX)" },
+        "userId": { "type": "string", "description": "Firebase Auth UID" },
+        "fullName": { "type": "string" },
+        "dob": { "type": "string", "format": "date" },
+        "gender": { "type": "string", "enum": ["male", "female", "other"] },
+        "state": { "type": "string" },
+        "lga": { "type": "string" },
+        "ward": { "type": "string" },
+        "address": { "type": "string" },
+        "phone": { "type": "string" },
+        "email": { "type": "string", "format": "email" },
+        "nin": { "type": "string" },
+        "passportUrl": { "type": "string" },
+        "documentsUrl": { "type": "array", "items": { "type": "string" } },
+        "status": { "type": "string", "enum": ["pending", "approved", "rejected"] },
+        "remarks": { "type": "string" },
+        "certificateId": { "type": "string", "description": "Certificate ID (CERT-YYYY-XXXX)" },
+        "issueDate": { "type": "object", "description": "Firestore Timestamp" },
+        "createdAt": { "type": "object", "description": "Firestore Timestamp" }
+      },
+      "required": ["id", "userId", "fullName", "dob", "gender", "state", "lga", "ward", "address", "phone", "email", "status", "createdAt"]
+    },
+    "User": {
+      "title": "User",
+      "description": "User profile record",
+      "type": "object",
+      "properties": {
+        "uid": { "type": "string" },
+        "registrationId": { "type": "string" },
+        "email": { "type": "string", "format": "email" },
+        "role": { "type": "string", "enum": ["applicant", "admin"] }
+      },
+      "required": ["uid", "email", "role"]
+    }
+  },
+  "firestore": {
+    "/applications/{appId}": {
+      "schema": "Application",
+      "description": "Indigenship applications"
+    },
+    "/users/{userId}": {
+      "schema": "User",
+      "description": "User profiles"
+    }
+  }
+}
